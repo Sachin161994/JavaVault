@@ -1,5 +1,3 @@
-package thirtyDaysOfCode;
-
 import java.io.*;
 import java.math.*;
 import java.security.*;
@@ -7,10 +5,8 @@ import java.text.*;
 import java.util.*;
 import java.util.concurrent.*;
 import java.util.regex.*;
-import java.util.Arrays; 
-  
 
-public class DayEleven {
+public class HourGlass {
 
 
 
@@ -28,26 +24,17 @@ public class DayEleven {
                 arr[i][j] = arrItem;
             }
         }
-        int max_sum = 0;
-    int temp_sum;
-    for(int i = 0; i < 4; i++) {
-        for(int j = 0; j < 4; j++) {
-            temp_sum = 0;
-
-            temp_sum += arr[i][j];
-            temp_sum += arr[i][j+1];
-            temp_sum += arr[i][j+2];
-            temp_sum += arr[i+1][j+1];
-            temp_sum += arr[i+2][j];
-            temp_sum += arr[i+2][j+1];
-            temp_sum += arr[i+2][j+2];                                                          
-            	if(temp_sum > max_sum || i == 0 && j == 0)
-                max_sum = temp_sum;
+        int[] sum = new int[100];
+        for(int i = 0; i<6;i++) {
+        	for(int j = 0; j<6;j++) {
+        		if(arr[i][j]!=0 && arr[i][j-1]!=0 && arr[i][j+1]!=0 && arr[i+1][j]!=0 && arr[i+2][j-1]!=0 && arr[i+2][j+1]!=0 && arr[i+2][j]!=0) {
+        				sum[i]=arr[i][j] + arr[i][j-1] + arr[i][j+1] + arr[i+1][j] + arr[i+2][j-1] + arr[i+2][j+1] + arr[i+2][j];
+        		}
+        	}
         }
-    }
-    System.out.println(max_sum);
+        int max = Arrays.stream(sum).max().getAsInt();
+        System.out.println(max);
 
         scanner.close();
     }
 }
-
